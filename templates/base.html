@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Todo App</title>
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/semantic-ui@2.4.2/dist/semantic.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/semantic-ui@2.4.2/dist/semantic.min.js"></script>
+</head>
+
+<body>
+{% block content %}
+    <div style="margin-top: 50px;" class="ui container">
+        <h1 class="ui center aligned header">To Do App</h1>
+
+        <form class="ui form" action="/register" method="post">
+            <div class="field">
+                <h1>Register Form</h1>
+                <input type="text" name="name" placeholder="Enter username..."><br>
+                <input type="password" name="password" placeholder="Enter password..."><br>
+            </div>
+            <button class="ui blue button" type="submit">Register</button>
+        </form>
+
+        <form class="ui form" action="/add" method="post">
+            <div class="field">
+                <h1>Todo list</h1>
+                <input type="text" name="itemName" placeholder="Enter name..."><br>
+                <input type="text" name="itemDescribe" placeholder="Enter describe..."><br>
+            </div>
+            <button class="ui blue button" type="submit">Add</button>
+        </form>
+
+        <hr>
+        <div class="navbar">
+            <div class="dropdown">
+                <button class="ui blue button" type="button" data-toggle="dropdown">Sort item</button>
+                <ul class="dropdown-menu">
+                    <li><a href="/">desc</a></li>
+                    <li><a href="/asc">asc</a></li>
+                </ul>
+            </div>
+        </div>
+        {% for page_num in posts %}
+            {% if page_num %}
+                {% if posts == page_num %}
+                    <a class="ui primary button" href="{{ url_for('home', page=page_num) }}">{{ page_num }}</a>
+            {% else %}
+                    <a class="ui primary button" href="{{ url_for('home', page=page_num) }}">{{ page_num }}</a>
+            {% endif %}
+            {% else %}
+                ...
+            {% endif %}
+        {% endfor %}
+
+        {% for item in item_list %}
+            <div class="ui segment">
+                <p class="ui big header">{{item.item_name }} | {{ item.item_desc }} | {{ item.item_id }} </p>
+                <a class="ui blue button" href="/update?_id={{ item['_id'] }}">Update</a>
+                <a class="ui red button" href="/delete?_id={{ item['_id'] }}">Delete</a>
+            </div>
+        {% endfor %}
+    </div>
+
+{% endblock %}
+</body>
+
+</html>

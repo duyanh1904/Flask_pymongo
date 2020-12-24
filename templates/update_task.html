@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Update</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/semantic-ui@2.4.2/dist/semantic.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/semantic-ui@2.4.2/dist/semantic.min.js"></script>
+</head>
+<body>
+    <div style="margin-top: 50px;" class="ui container">
+        <h1 class="ui center aligned header">Update Item</h1>
+        <form class="ui form" action="{{ url_for('update', item_id = item_id ) }}" method="post">
+            <div class="field">
+                <h1>Item</h1>
+                <input type="text" name="itemName" placeholder="Enter name..."><br>
+                <input type="text" name="itemDescribe" placeholder="Enter describe..."><br>
+            </div>
+            <button class="ui blue button" type="submit">Update</button>
+        </form>
+    </div>
+
+</body>
+</html>
