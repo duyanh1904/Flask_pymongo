@@ -2,3 +2,4 @@ Flask
 datetime
 uuid
 PyJWT
+kafka-python
